@@ -1,0 +1,582 @@
+/* ============================================================
+   Kaustubh Gupta — personal academic website
+   Built on the Academic-Homepage-Template design system
+   (https://github.com/Arvid-pku/Academic-Homepage-Template, by Xunjian Yin).
+   Reused: CSS variables, dark-mode, nav/footer/back-to-top styling.
+   Changed: system font stack (no Lato CDN), single accent color,
+   narrower content column, single-page anchor layout.
+   ============================================================ */
+
+:root {
+  --primary-color: #0065C0;
+  --secondary-color: #f09228;
+  --text-color: #1a1a1a;
+  --bg-color: #ffffff;
+  --border-color: #e5e7eb;
+  --section-bg: #ffffff;
+  --hover-bg: rgba(240, 146, 40, 0.08);
+  --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] {
+  --primary-color: #6BA3F5;
+  --secondary-color: #FFB366;
+  --text-color: #d4d4d4;
+  --bg-color: #1f1f1f;
+  --border-color: #3a3a3a;
+  --section-bg: #252525;
+  --hover-bg: rgba(255, 179, 102, 0.12);
+  --shadow-color: rgba(0, 0, 0, 0.2);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 76px;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--text-color);
+  background-color: var(--bg-color);
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:focus, a:hover {
+  color: var(--secondary-color);
+  text-decoration: none;
+}
+
+a:focus, button:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* ---- Navigation (top bar) ---- */
+.nav-buttons {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 14px 24px;
+  border-bottom: 1px solid var(--border-color);
+  background-color: var(--bg-color);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  flex-wrap: wrap;
+}
+
+.brand {
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--text-color);
+}
+
+.brand:hover {
+  color: var(--primary-color);
+}
+
+.nav-spacer {
+  flex: 1 1 auto;
+}
+
+.nav-button {
+  padding: 6px 10px;
+  color: var(--text-color);
+  font-weight: 500;
+  font-size: 14px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.nav-button:hover {
+  color: var(--secondary-color);
+  background-color: var(--hover-bg);
+}
+
+.theme-toggle {
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-color);
+  padding: 6px;
+  transition: all 0.2s ease;
+}
+
+.theme-toggle:hover {
+  background-color: var(--hover-bg);
+  color: var(--secondary-color);
+}
+
+.theme-toggle svg { width: 20px; height: 20px; }
+
+/* ---- Main content shell ---- */
+.page-shell {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 32px 24px 16px;
+}
+
+/* ---- Profile / intro ---- */
+.profile-section {
+  display: flex;
+  align-items: flex-start;
+  gap: 32px;
+  margin-bottom: 12px;
+}
+
+.profile-text { flex: 1; }
+
+.profile-text .name {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text-color);
+  margin-bottom: 4px;
+}
+
+.tagline {
+  font-size: 16px;
+  color: var(--text-color);
+  margin: 0 0 8px;
+}
+
+.role {
+  color: var(--text-color);
+  opacity: 0.85;
+  margin: 0 0 14px;
+}
+
+.muted { color: var(--text-color); opacity: 0.6; }
+
+.profile-links a { color: var(--primary-color); }
+
+.profile-photo {
+  flex-shrink: 0;
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-top: 6px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 8px var(--shadow-color);
+}
+
+/* ---- Sections ---- */
+.homepage-section {
+  margin: 48px 0;
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.homepage-section:last-child {
+  border-bottom: none;
+}
+
+.homepage-section h2 {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-color);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 0 0 20px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border-color);
+}
+
+.homepage-section p {
+  margin: 0 0 12px;
+}
+
+/* ---- Publications ---- */
+.pub-group {
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--primary-color);
+  margin: 24px 0 6px;
+}
+
+.pub-group:first-of-type {
+  margin-top: 8px;
+}
+
+.pub-subgroup {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-color);
+  opacity: 0.7;
+  margin: 14px 0 4px;
+}
+
+.publication-list {
+  list-style-type: none !important;
+  padding-left: 0 !important;
+  margin: 0 !important;
+}
+
+.publication-list li.pub-card {
+  margin-bottom: 18px !important;
+  padding: 16px 18px;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  background: var(--bg-color);
+  box-shadow: 0 1px 3px var(--shadow-color);
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.publication-list li.pub-card:hover {
+  border-color: var(--primary-color);
+  transform: translateY(-1px);
+}
+
+.papertitle {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--text-color);
+  line-height: 1.45;
+}
+
+.authors {
+  font-size: 14.5px;
+  color: var(--text-color);
+  opacity: 0.9;
+  margin: 6px 0 10px;
+}
+
+.self-author {
+  font-weight: 700;
+  color: var(--secondary-color);
+}
+
+.pub-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.paper-venue {
+  color: var(--primary-color);
+  font-size: 14px;
+  margin: 1px 0 2px;
+}
+
+/* Colored venue badges */
+.pub-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+}
+
+.badge-icml { background: #e8f0fe; color: #1a56c4; }
+.badge-icassp { background: #e6f4ea; color: #1e7a3a; }
+.badge-review { background: #fdecdc; color: #b4651b; }
+.badge-survey { background: #f3e8fd; color: #7a3bb8; }
+
+[data-theme="dark"] .badge-icml { background: #1b2a4a; color: #8fb4ff; }
+[data-theme="dark"] .badge-icassp { background: #16331f; color: #7fd99a; }
+[data-theme="dark"] .badge-review { background: #3a2a17; color: #f0b072; }
+[data-theme="dark"] .badge-survey { background: #2c1f3d; color: #cfa6f0; }
+
+.paper-links {
+  font-size: 14px;
+  margin-top: 0;
+}
+
+.paper-links a {
+  color: var(--primary-color);
+  margin-right: 10px;
+}
+
+.paper_rest {
+  font-size: 14px;
+  color: var(--text-color);
+  opacity: 0.82;
+  line-height: 1.5;
+}
+
+/* ---- News ---- */
+.news-year {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin: 14px 0 6px;
+}
+
+.news-year:first-of-type {
+  margin-top: 0;
+}
+
+.news-list {
+  list-style: none !important;
+  padding-left: 0 !important;
+  margin: 0 !important;
+}
+
+.news-list li {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 6px !important;
+  font-size: 15px;
+}
+
+.news-date {
+  flex-shrink: 0;
+  width: 38px;
+  font-weight: 600;
+  color: var(--primary-color);
+  font-size: 13px;
+  text-transform: uppercase;
+}
+
+/* ---- Academic background table ---- */
+.edu-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+
+.edu-table th {
+  text-align: left;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-color);
+  opacity: 0.6;
+  padding: 0 0 6px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.edu-table td {
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border-color);
+  vertical-align: top;
+}
+
+.edu-table td:first-child {
+  width: 90px;
+  font-weight: 600;
+  color: var(--primary-color);
+  white-space: nowrap;
+}
+
+.edu-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* ---- Research interests ---- */
+.interests-list {
+  list-style-type: disc !important;
+  padding-left: 22px !important;
+  margin: 0 !important;
+}
+
+.interests-list li {
+  margin-bottom: 6px !important;
+}
+
+/* ---- Current research ---- */
+.research-title {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--text-color);
+  margin: 0 0 8px;
+}
+
+.research-collab {
+  font-size: 14px;
+  color: var(--text-color);
+  opacity: 0.75;
+  margin: 10px 0 0;
+}
+
+/* ---- Research note ---- */
+.note {
+  background: var(--hover-bg);
+  border-left: 3px solid var(--secondary-color);
+  padding: 12px 16px;
+  border-radius: 4px;
+  font-size: 15px;
+}
+
+/* ---- Projects ---- */
+#projects-list {
+  list-style-type: none !important;
+  padding-left: 0 !important;
+  margin: 0 !important;
+}
+
+#projects-list li {
+  margin-bottom: 18px !important;
+}
+
+.proj-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.proj-tech {
+  font-size: 13px;
+  color: var(--primary-color);
+  opacity: 0.85;
+  margin: 2px 0 4px;
+}
+
+/* ---- CV button ---- */
+.cv-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--primary-color);
+  color: #fff;
+  padding: 11px 22px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 15px;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.cv-button svg {
+  width: 18px;
+  height: 18px;
+}
+
+.cv-button:hover {
+  background: var(--secondary-color);
+  color: #fff;
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+
+/* ---- Footer ---- */
+.page-shell-footer {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.site-footer {
+  border-top: 1px solid var(--border-color);
+  margin-top: 24px;
+  padding: 28px 0 40px;
+  text-align: center;
+}
+
+.footer-social {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-bottom: 16px;
+}
+
+.footer-social a {
+  color: var(--text-color);
+  opacity: 0.6;
+  transition: all 0.3s ease;
+}
+
+.footer-social a:hover {
+  color: var(--primary-color);
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
+.footer-social svg { width: 22px; height: 22px; }
+
+.footer-email {
+  color: var(--text-color);
+  opacity: 0.7;
+  font-size: 14px;
+  align-self: center;
+}
+
+.footer-copyright {
+  font-size: 13px;
+  color: var(--text-color);
+  opacity: 0.6;
+  margin: 0;
+}
+
+/* ---- Back to top ---- */
+.back-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 44px;
+  height: 44px;
+  background-color: var(--primary-color);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 10px var(--shadow-color);
+  z-index: 999;
+}
+
+.back-to-top.visible { opacity: 1; visibility: visible; }
+
+.back-to-top:hover {
+  background-color: var(--secondary-color);
+  transform: translateY(-3px);
+}
+
+.back-to-top svg { width: 20px; height: 20px; }
+
+/* ---- Skip link ---- */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: var(--primary-color);
+  color: #fff;
+  padding: 8px;
+  text-decoration: none;
+  z-index: 1000;
+  border-radius: 4px;
+}
+
+.skip-link:focus { top: 6px; }
+
+/* ---- Responsive ---- */
+@media screen and (max-width: 768px) {
+  .profile-section {
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 16px;
+    text-align: center;
+  }
+  .profile-photo { margin-top: 0; }
+  .nav-spacer { display: none; }
+}
+
+@media screen and (max-width: 480px) {
+  body { font-size: 15px; }
+  .profile-photo { width: 120px; height: 120px; }
+}
