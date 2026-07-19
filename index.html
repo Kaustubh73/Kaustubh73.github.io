@@ -165,7 +165,7 @@
             <span class="pub-badge badge-icml">ICML 2026</span>
             <span class="paper-links">
               <a href="https://arxiv.org/abs/2602.22719" target="_blank" rel="noopener">[Paper]</a>
-              <a href="files/publications.bib#icml2026" target="_blank" rel="noopener">[BibTeX]</a>
+              <button type="button" class="bib-btn" data-title="Interpreting and Steering State-Space Models via Activation Subspace Bottlenecks">[BibTeX]</button>
             </span>
           </div>
         </li>
@@ -182,7 +182,7 @@
             <span class="pub-badge badge-icassp">IEEE ICASSP 2025</span>
             <span class="paper-links">
               <a href="https://doi.org/10.1109/icassp49660.2025.10890273" target="_blank" rel="noopener">[Paper]</a>
-              <a href="files/publications.bib#icassp2025" target="_blank" rel="noopener">[BibTeX]</a>
+              <button type="button" class="bib-btn" data-title="Stream-TTS: A Low-Latency Text-to-Speech using Kolmogorov-Arnold Networks for Streaming Speech Applications">[BibTeX]</button>
             </span>
           </div>
         </li>
@@ -315,6 +315,27 @@
     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
   </button>
 
+  <!-- BibTeX modal -->
+  <div id="bib-modal" class="bib-modal" hidden>
+    <div class="bib-modal-backdrop" data-close></div>
+    <div class="bib-modal-box" role="dialog" aria-modal="true" aria-labelledby="bib-modal-title">
+      <div class="bib-modal-head">
+        <span id="bib-modal-title" class="bib-modal-title">BibTeX</span>
+        <button type="button" class="bib-modal-close" data-close aria-label="Close">&times;</button>
+      </div>
+      <pre id="bib-modal-text" class="bib-modal-text"></pre>
+      <button type="button" id="bib-copy" class="bib-copy">Copy to clipboard</button>
+    </div>
+  </div>
+
+  <script>
+    window.BIBTEX_ENTRIES = {
+      "Interpreting and Steering State-Space Models via Activation Subspace Bottlenecks":
+"@misc{mohan2026interpretingsteeringstatespacemodels,\n  title={Interpreting and Steering State-Space Models via Activation Subspace Bottlenecks},\n  author={Vamshi Sunku Mohan and Kaustubh Gupta and Aneesha Das and Chandan Singh},\n  year={2026},\n  eprint={2602.22719},\n  archivePrefix={arXiv},\n  primaryClass={cs.LG},\n  url={https://arxiv.org/abs/2602.22719}\n}",
+      "Stream-TTS: A Low-Latency Text-to-Speech using Kolmogorov-Arnold Networks for Streaming Speech Applications":
+"@INPROCEEDINGS{10890273,\n  author={Pamisetty, Giridhar and Easow, Riya Ann and Gupta, Kaustubh and Murty, K Sri Rama},\n  booktitle={ICASSP 2025 - 2025 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)},\n  title={Stream-TTS: A Low-Latency Text-to-Speech using Kolmogorov-Arnold Networks for Streaming Speech Applications},\n  year={2025},\n  volume={},\n  number={},\n  pages={1-2},\n  doi={10.1109/ICASSP49660.2025.10890273}\n}"
+    };
+  </script>
   <script src="theme.js"></script>
 </body>
 

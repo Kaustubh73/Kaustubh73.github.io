@@ -564,8 +564,108 @@ a:focus, button:focus {
 
 .skip-link:focus { top: 6px; }
 
+/* ---- BibTeX button + modal ---- */
+.bib-btn {
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin-right: 10px;
+  font: inherit;
+  font-size: 14px;
+  color: var(--primary-color);
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+.bib-btn:hover { color: var(--secondary-color); }
+
+.bib-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.bib-modal[hidden] { display: none; }
+
+.bib-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.bib-modal-box {
+  position: relative;
+  width: 100%;
+  max-width: 560px;
+  background: var(--bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  box-shadow: 0 10px 40px var(--shadow-color);
+  padding: 20px 22px 22px;
+  max-height: 80vh;
+  overflow: auto;
+}
+
+.bib-modal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.bib-modal-title {
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--primary-color);
+}
+
+.bib-modal-close {
+  background: transparent;
+  border: none;
+  font-size: 26px;
+  line-height: 1;
+  color: var(--text-color);
+  cursor: pointer;
+  padding: 0 4px;
+}
+
+.bib-modal-text {
+  background: var(--section-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 14px;
+  font-size: 13px;
+  line-height: 1.6;
+  overflow: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin: 0 0 14px;
+}
+
+.bib-copy {
+  width: 100%;
+  padding: 10px 14px;
+  border: none;
+  border-radius: 8px;
+  background: var(--primary-color);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.bib-copy:hover { background: var(--secondary-color); }
+.bib-copy.copied { background: #1e7a3a; }
+
 /* ---- Responsive ---- */
 @media screen and (max-width: 768px) {
+  .page-shell { padding: 24px 16px 12px; }
+  .nav-buttons { gap: 10px; padding: 12px 14px; }
+  .nav-button { padding: 6px 6px; font-size: 13px; }
   .profile-section {
     flex-direction: column-reverse;
     align-items: center;
@@ -573,10 +673,18 @@ a:focus, button:focus {
     text-align: center;
   }
   .profile-photo { margin-top: 0; }
+  .profile-text { text-align: center; }
+  .profile-links { justify-content: center; }
   .nav-spacer { display: none; }
+  .pub-meta { gap: 8px; }
+  .bib-modal-box { max-height: 70vh; }
 }
 
 @media screen and (max-width: 480px) {
   body { font-size: 15px; }
   .profile-photo { width: 120px; height: 120px; }
+  .profile-text .name { font-size: 24px; }
+  .homepage-section h2 { font-size: 16px; }
+  .papertitle { font-size: 15.5px; }
+  .nav-button { font-size: 12px; }
 }

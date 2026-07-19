@@ -64,4 +64,67 @@
   // ---- Footer year ----
   var yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+  // ---- BibTeX modal ----
+  var modal = document.getElementById('bib-modal');
+  var modalText = document.getElementById('bib-modal-text');
+  var modalTitle = document.getElementById('bib-modal-title');
+  var copyBtn = document.getElementById('bib-copy');
+  var lastFocused = null;
+
+  function openModal(title, bibtex) {
+    if (!modal) return;
+    modalTitle.textContent = title && title.length > 60 ? title.slice(0, 57) + '…' : (title || 'BibTeX');
+    modalText.textContent = bibtex || '';
+    copyBtn.textContent = 'Copy to clipboard';
+    copyBtn.classList.remove('copied');
+    modal.hidden = false;
+    lastFocused = document.activeElement;
+    copyBtn.focus();
+  }
+
+  function closeModal() {
+    if (!modal) return;
+    modal.hidden = true;
+    if (lastFocused && lastFocused.focus) lastFocused.focus();
+  }
+
+  document.querySelectorAll('.bib-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var title = btn.getAttribute('data-title') || '';
+      var entries = window.BIBTEX_ENTRIES || {};
+      openModal(title, entries[title] || '');
+    });
+  });
+
+  if (modal) {
+    modal.querySelectorAll('[data-close]').forEach(function (el) {
+      el.addEventListener('click', closeModal);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !modal.hidden) closeModal();
+    });
+    copyBtn.addEventListener('click', function () {
+      var text = modalText.textContent;
+      var done = function () {
+        copyBtn.textContent = 'Copied!';
+        copyBtn.classList.add('copied');
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done).catch(fallbackCopy);
+      } else {
+        fallbackCopy();
+      }
+      function fallbackCopy() {
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy'); done(); } catch (e) {}
+        document.body.removeChild(ta);
+      }
+    });
+  }
 })();
