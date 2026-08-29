@@ -374,7 +374,7 @@ a:focus, button:focus {
 }
 
 .edu-table td:first-child {
-  width: 90px;
+  width: 11.5em;
   font-weight: 600;
   color: var(--primary-color);
   white-space: nowrap;
@@ -687,4 +687,8 @@ a:focus, button:focus {
   .homepage-section h2 { font-size: 16px; }
   .papertitle { font-size: 15.5px; }
   .nav-button { font-size: 12px; }
+  .edu-table td:first-child {
+    width: auto;
+    white-space: normal;
+  }
 }
