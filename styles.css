@@ -420,13 +420,13 @@ a:focus, button:focus {
 }
 
 /* ---- Projects ---- */
-#projects-list {
+#projects-list, #projects-list-other {
   list-style-type: none !important;
   padding-left: 0 !important;
   margin: 0 !important;
 }
 
-#projects-list li {
+#projects-list li, #projects-list-other li {
   margin-bottom: 18px !important;
 }
 
@@ -687,4 +687,18 @@ a:focus, button:focus {
   .homepage-section h2 { font-size: 16px; }
   .papertitle { font-size: 15.5px; }
   .nav-button { font-size: 12px; }
+}
+
+/* ---- Hero links, interests lines, datasets line ---- */
+.profile-links { display: flex; flex-wrap: wrap; gap: 6px 16px; }
+.interests-line { margin: 0 0 6px; }
+.datasets-line { margin: 4px 0 0; }
+.datasets-line a { color: var(--primary-color); }
+
+/* ---- Mobile nav: one scrolling row instead of stacked rows ---- */
+@media screen and (max-width: 768px) {
+  .nav-buttons { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  .nav-buttons::-webkit-scrollbar { display: none; }
+  .nav-button, .brand { white-space: nowrap; flex-shrink: 0; }
+  .theme-toggle { flex-shrink: 0; }
 }
